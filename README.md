@@ -21,8 +21,8 @@ Try out wordcards here: https://leoclee.github.io/wordcards
 *   **Keyboard Shortcuts:** Desktop users can navigate with speed using dedicated keyboard shortcuts.
 
 ---
-add
-## ✨ Screenshots
+
+## 📸 Screenshots
 
 ![card front](.github/assets/screenshot-front.png)
 
