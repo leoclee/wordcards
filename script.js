@@ -2,6 +2,7 @@ let allLists = {};
 let currentListName = "";
 let currentWords = [];
 let currentIndex = 0;
+let isSpellingMode = false; // System state tracking flag
 
 try {
     if (typeof FLASHCARD_DATA === 'undefined') {
@@ -66,7 +67,21 @@ function loadList(listName) {
     renderTextValues();
 }
 
-// Separated text rendering from timing mechanisms
+// Handles switching modes dynamically
+function toggleSpellingMode() {
+    isSpellingMode = !isSpellingMode;
+    const btn = document.getElementById('modeToggleBtn');
+
+    if (isSpellingMode) {
+        btn.textContent = "Spell";
+        btn.classList.add('active-mode');
+    } else {
+        btn.textContent = "Sight";
+        btn.classList.remove('active-mode');
+    }
+    renderTextValues();
+}
+
 function renderTextValues() {
     if (!currentWords || currentWords.length === 0) {
         document.getElementById('frontWord').innerText = "Empty List";
@@ -76,8 +91,30 @@ function renderTextValues() {
     }
 
     const currentCardData = currentWords[currentIndex];
-    document.getElementById('frontWord').innerText = currentCardData.word;
-    document.getElementById('backHint').innerText = currentCardData.sentence || "No sample sentence provided.";
+    const frontDisplay = document.getElementById('frontWord');
+    const backDisplay = document.getElementById('backHint');
+
+    // 1. Process Front Side Card text values
+    frontDisplay.innerText = currentCardData.word;
+    if (isSpellingMode) {
+        frontDisplay.classList.add('redacted-word');
+    } else {
+        frontDisplay.classList.remove('redacted-word');
+    }
+
+    // 2. Process Back Side Card Text values (Sentence parsing logic)
+    const targetWord = currentCardData.word;
+    const originalSentence = currentCardData.sentence || "No sample sentence provided.";
+
+    if (isSpellingMode && currentCardData.sentence) {
+        // Regex looks for the whole target word safely (case-insensitive)
+        const regex = new RegExp(`\\b(${targetWord})\\b`, 'gi');
+        // Inject an inline HTML element containing your requested redaction styles
+        backDisplay.innerHTML = originalSentence.replace(regex, '<span class="redacted">$1</span>');
+    } else {
+        backDisplay.innerText = originalSentence;
+    }
+
     document.getElementById('progress').innerText = `Card ${currentIndex + 1} of ${currentWords.length}`;
 }
 

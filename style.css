@@ -230,3 +230,40 @@ button.nav-btn:active {
         display: none !important;
     }
 }
+
+/* Redaction styles for Spelling Mode */
+.redacted {
+    user-select: none;
+    background-color: var(--text-color) !important; /* Matches current light/dark text color */
+    color: var(--text-color) !important;
+    border-radius: 4px;
+    padding: 0 4px;
+}
+
+/* Ensure the big word container scales cleanly when blacked out */
+.card-front .word-display.redacted-word {
+    user-select: none;
+    background-color: var(--text-color);
+    color: var(--text-color);
+    border-radius: 12px;
+    min-height: 5.5rem; /* Keeps card structural height stable */
+}
+
+/* Top bar adjustment button styling */
+button.mode-btn {
+    background: var(--select-bg);
+    border: 2px solid #cbd5e0;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0 16px;
+    border-radius: 8px;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.2s;
+}
+
+button.mode-btn.active-mode {
+    background-color: #e53e3e;
+    color: white;
+    border-color: #e53e3e;
+}
