@@ -223,3 +223,10 @@ button.nav-btn:active {
     opacity: 0.8;
     text-align: center;
 }
+
+/* Hide the guide entirely on touch devices (phones, tablets) */
+@media (pointer: coarse) {
+    .shortcuts-guide {
+        display: none !important;
+    }
+}
