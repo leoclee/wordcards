@@ -1,5 +1,5 @@
 const FLASHCARD_DATA = {
-  "First Grade High Frequency Words List 1": [
+  "1st Grade High Frequency Words List 1": [
     { "word": "the", "sentence": "Look at the big dog." },
     { "word": "of", "sentence": "She has a cup of milk." },
     { "word": "and", "sentence": "I like cats and dogs." },
@@ -11,7 +11,7 @@ const FLASHCARD_DATA = {
     { "word": "that", "sentence": "Look at that bright star." },
     { "word": "it", "sentence": "It is raining today." }
   ],
-  "First Grade High Frequency Words List 2": [
+  "1st Grade High Frequency Words List 2": [
     { "word": "he", "sentence": "He likes to ride his bike." },
     { "word": "for", "sentence": "This gift is for you." },
     { "word": "are", "sentence": "We are going to school." },
@@ -23,7 +23,7 @@ const FLASHCARD_DATA = {
     { "word": "his", "sentence": "He lost his blue hat." },
     { "word": "I", "sentence": "I can read by myself." }
   ],
-  "First Grade High Frequency Words List 3": [
+  "1st Grade High Frequency Words List 3": [
     { "word": "at", "sentence": "Look at the little bug." },
     { "word": "this", "sentence": "This is a fun game." },
     { "word": "one", "sentence": "I have one sweet puppy." },
@@ -35,7 +35,7 @@ const FLASHCARD_DATA = {
     { "word": "words", "sentence": "I can spell five words." },
     { "word": "not", "sentence": "That is not my backpack." }
   ],
-  "First Grade High Frequency Words List 4": [
+  "1st Grade High Frequency Words List 4": [
     { "word": "what", "sentence": "What is your favorite color?" },
     { "word": "were", "sentence": "They were playing outside." },
     { "word": "when", "sentence": "When will we go home?" },
@@ -47,7 +47,7 @@ const FLASHCARD_DATA = {
     { "word": "said", "sentence": "Mom said it is time for bed." },
     { "word": "use", "sentence": "I use a pencil to write." }
   ],
-  "First Grade High Frequency Words List 5": [
+  "1st Grade High Frequency Words List 5": [
     { "word": "an", "sentence": "I ate an orange for lunch." },
     { "word": "which", "sentence": "Which toy do you like best?" },
     { "word": "do", "sentence": "Do you know how to swim?" },
@@ -59,7 +59,7 @@ const FLASHCARD_DATA = {
     { "word": "up", "sentence": "Look up at the blue sky." },
     { "word": "about", "sentence": "Tell me a story about a dragon." }
   ],
-  "First Grade High Frequency Words List 6": [
+  "1st Grade High Frequency Words List 6": [
     { "word": "out", "sentence": "Please take the trash out." },
     { "word": "then", "sentence": "We will eat lunch, then play outside." },
     { "word": "these", "sentence": "These blocks are fun to build with." },
@@ -71,7 +71,7 @@ const FLASHCARD_DATA = {
     { "word": "her", "sentence": "I gave her a nice flower." },
     { "word": "make", "sentence": "Let's make a big sandcastle." }
   ],
-  "First Grade High Frequency Words List 7": [
+  "1st Grade High Frequency Words List 7": [
     { "word": "like", "sentence": "I like to eat sweet strawberries." },
     { "word": "into", "sentence": "The frog jumped into the pond." },
     { "word": "has", "sentence": "He has a cool red truck." },
@@ -83,7 +83,7 @@ const FLASHCARD_DATA = {
     { "word": "more", "sentence": "Can I have one more story?" },
     { "word": "number", "sentence": "What is your lucky number?" }
   ],
-  "First Grade High Frequency Words List 8": [
+  "1st Grade High Frequency Words List 8": [
     { "word": "no", "sentence": "There is no more milk left." },
     { "word": "could", "sentence": "I wish I could fly like a bird." },
     { "word": "my", "sentence": "This is my favorite green shirt." },
@@ -95,7 +95,7 @@ const FLASHCARD_DATA = {
     { "word": "water", "sentence": "Drink water when you are thirsty." },
     { "word": "called", "sentence": "The little cat is called Fluffy." }
   ],
-  "First Grade High Frequency Words List 9": [
+  "1st Grade High Frequency Words List 9": [
     { "word": "who", "sentence": "Who is knocking at the door?" },
     { "word": "sit", "sentence": "Please sit on the blue rug." },
     { "word": "find", "sentence": "Can you find my lost sock?" },
@@ -107,7 +107,7 @@ const FLASHCARD_DATA = {
     { "word": "day", "sentence": "Today is a beautiful sunny day." },
     { "word": "get", "sentence": "Go get your warm winter coat." }
   ],
-  "First Grade High Frequency Words List 10": [
+  "1st Grade High Frequency Words List 10": [
     { "word": "come", "sentence": "Come over and play at my house." },
     { "word": "have", "sentence": "I have three red markers." },
     { "word": "their", "sentence": "The birds built their nest here." },
@@ -119,7 +119,7 @@ const FLASHCARD_DATA = {
     { "word": "see", "sentence": "I see a tiny brown mouse." },
     { "word": "part", "sentence": "Which part of the game is your favorite?" }
   ],
-  "First Grade High Frequency Words List 11": [
+  "1st Grade High Frequency Words List 11": [
     { "word": "over", "sentence": "The cow jumped over the moon." },
     { "word": "sound", "sentence": "The loud bell makes a ringing sound." },
     { "word": "only", "sentence": "I have only one loose tooth left." },
@@ -131,7 +131,7 @@ const FLASHCARD_DATA = {
     { "word": "know", "sentence": "I know how to tie my shoes." },
     { "word": "years", "sentence": "I am six years old now." }
   ],
-  "First Grade High Frequency Words List 12": [
+  "1st Grade High Frequency Words List 12": [
     { "word": "live", "sentence": "Fish live under the deep blue water." },
     { "word": "back", "sentence": "Put the book back on the shelf." },
     { "word": "most", "sentence": "Most kids love to eat sweet ice cream." },
@@ -143,7 +143,7 @@ const FLASHCARD_DATA = {
     { "word": "things", "sentence": "Pack your things in your school bag." },
     { "word": "just", "sentence": "I just finished reading my first book." }
   ],
-  "First Grade High Frequency Words List 13": [
+  "1st Grade High Frequency Words List 13": [
     { "word": "name", "sentence": "My name is written right here." },
     { "word": "sentence", "sentence": "Write a short sentence about your pet." },
     { "word": "think", "sentence": "I think it is going to snow." },
@@ -155,28 +155,28 @@ const FLASHCARD_DATA = {
     { "word": "where", "sentence": "Where did you put my yellow pencil?" },
     { "word": "through", "sentence": "The train went through the dark tunnel." }
   ],
-  "First Grade High Frequency Words List 14": [
+  "1st Grade High Frequency Words List 14": [
     { "word": "much", "sentence": "How much do you love candy?" },
     { "word": "line", "sentence": "Stand in a straight line at the door." },
     { "word": "too", "sentence": "The hot soup is too warm to eat." },
     { "word": "old", "sentence": "This old toy is still my favorite." },
     { "word": "same", "sentence": "We are wearing the same red shirt." },
     { "word": "before", "sentence": "Wash your sticky hands before you eat." },
-	{ "word": "right", "sentence": "Turn right at the big tree." },
-	{ "word": "means", "sentence": "A red light means you must stop." },
-	{ "word": "any", "sentence": "Do you have any green crayons?" },
-	{ "word": "tell", "sentence": "Tell me your favorite funny joke." }
+    { "word": "right", "sentence": "Turn right at the big tree." },
+    { "word": "means", "sentence": "A red light means you must stop." },
+    { "word": "any", "sentence": "Do you have any green crayons?" },
+    { "word": "tell", "sentence": "Tell me your favorite funny joke." }
   ],
-  "First Grade High Frequency Words List 15": [
+  "1st Grade High Frequency Words List 15": [
     { "word": "boy", "sentence": "The little boy ran down the hill." },
-	{ "word": "came", "sentence": "A package came in the mail today." },
-	{ "word": "show", "sentence": "Show me your cool drawing." },
-	{ "word": "around", "sentence": "We ran around the playground." },
-	{ "word": "three", "sentence": "The bird laid three small blue eggs." },
-	{ "word": "following", "sentence": "The puppy is following me home." },
-	{ "word": "want", "sentence": "I want a big slice of pizza." },
-	{ "word": "also", "sentence": "I like apples and I also like grapes." },
-	{ "word": "form", "sentence": "Ice will form when water gets very cold." },
-	{ "word": "small", "sentence": "The small mouse ate a crumb of cheese." }
+    { "word": "came", "sentence": "A package came in the mail today." },
+    { "word": "show", "sentence": "Show me your cool drawing." },
+    { "word": "around", "sentence": "We ran around the playground." },
+    { "word": "three", "sentence": "The bird laid three small blue eggs." },
+    { "word": "following", "sentence": "The puppy is following me home." },
+    { "word": "want", "sentence": "I want a big slice of pizza." },
+    { "word": "also", "sentence": "I like apples and I also like grapes." },
+    { "word": "form", "sentence": "Ice will form when water gets very cold." },
+    { "word": "small", "sentence": "The small mouse ate a crumb of cheese." }
   ]
 };
