@@ -204,7 +204,7 @@ function speakWord(event) {
     window.speechSynthesis.cancel(); 
     const currentCardData = currentWords[currentIndex];
     const utterance = new SpeechSynthesisUtterance(currentCardData.word);
-    utterance.rate = 0.80;
+    utterance.rate = 0.6;
     window.speechSynthesis.speak(utterance);
 }
 
@@ -216,6 +216,6 @@ function speakSentence(event) {
     const currentCardData = currentWords[currentIndex];
     const targetSentence = currentCardData.sentence || "No sentence provided.";
     const utterance = new SpeechSynthesisUtterance(targetSentence);
-    utterance.rate = 1.0;
+    utterance.rate = 0.7;
     window.speechSynthesis.speak(utterance);
 }
