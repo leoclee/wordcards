@@ -231,6 +231,10 @@ button.nav-btn:active {
     }
 }
 
+.word-in-sentence {
+    text-decoration: underline;
+}
+
 /* Redaction styles for Spelling Mode */
 .redacted {
     user-select: none;

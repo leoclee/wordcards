@@ -106,13 +106,13 @@ function renderTextValues() {
     const targetWord = currentCardData.word;
     const originalSentence = currentCardData.sentence || "No sample sentence provided.";
 
+    // Regex looks for the whole target word safely (case-insensitive)
+    const regex = new RegExp(`\\b(${targetWord})\\b`, 'gi');
     if (isSpellingMode && currentCardData.sentence) {
-        // Regex looks for the whole target word safely (case-insensitive)
-        const regex = new RegExp(`\\b(${targetWord})\\b`, 'gi');
         // Inject an inline HTML element containing your requested redaction styles
         backDisplay.innerHTML = originalSentence.replace(regex, '<span class="redacted">$1</span>');
     } else {
-        backDisplay.innerText = originalSentence;
+        backDisplay.innerHTML = originalSentence.replace(regex, '<span class="word-in-sentence">$1</span>');
     }
 
     document.getElementById('progress').innerText = `Card ${currentIndex + 1} of ${currentWords.length}`;
