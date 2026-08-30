@@ -271,3 +271,27 @@ button.mode-btn.active-mode {
     color: white;
     border-color: #e53e3e;
 }
+
+/* Footer Styles */
+footer {
+    margin-top: auto; /* Pushes the footer down if the screen has plenty of vertical space */
+    padding: 30px 0 0 0;
+    text-align: center;
+}
+
+footer a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--secondary-color);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s, color 0.2s;
+}
+
+footer a:hover {
+    opacity: 1;
+    color: var(--primary-color);
+}
