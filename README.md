@@ -45,7 +45,7 @@ To organize your project or customize words, keep the following structure in you
 
 ## 🚀 Quick Setup (Local Mode)
 
-1. Download all files into the **same folder** on your computer.
+1. [Download](./archive/refs/heads/main.zip) all files into the **same folder** on your computer.
 2. Open or create your custom data payload inside `words.js` following this data scheme (note that sentence is optional):
     ```javascript
     const FLASHCARD_DATA = {
