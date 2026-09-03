@@ -67,21 +67,6 @@ function loadList(listName) {
     renderTextValues();
 }
 
-function resetCardPositions() {
-    const leftCard = document.getElementById('leftCard');
-    const centerCard = document.getElementById('card');
-    const rightCard = document.getElementById('rightCard');
-
-    // Strip out stray navigation animation helpers
-    leftCard.style.transition = 'none';
-    centerCard.style.transition = 'none';
-    rightCard.style.transition = 'none';
-
-    leftCard.className = 'flashcard pos-left';
-    centerCard.className = 'flashcard pos-center';
-    rightCard.className = 'flashcard pos-right';
-}
-
 // Handles switching modes dynamically
 function toggleSpellingMode() {
     isSpellingMode = !isSpellingMode;
@@ -270,9 +255,8 @@ function shuffleCurrentList() {
     const card = document.getElementById('card');
     if (card.classList.contains('flipped')) {
         card.classList.remove('flipped');
-        setTimeout(() => { resetCardPositions(); renderTextValues(); }, 250);
+        setTimeout(() => { renderTextValues(); }, 250);
     } else {
-        resetCardPositions();
         renderTextValues();
     }
 }
