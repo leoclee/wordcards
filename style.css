@@ -30,6 +30,13 @@
     --audio-btn-hover: #718096;
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
 body {
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     background-color: var(--bg-color);
@@ -88,8 +95,8 @@ select:focus {
     width: 100%;
     display: flex;
     justify-content: center;
-    overflow-x: hidden; /* Stops far-flanking cards from growing the canvas width */
     padding: 10px 0;
+    overflow: visible;
 }
 
 .carousel-window {
@@ -170,7 +177,7 @@ select:focus {
 @media (min-width: 768px) {
     body::before, body::after {
         content: '';
-        position: absolute;
+        position: fixed;
         top: 0;
         bottom: 0;
         width: calc((100vw - 620px) / 2);
