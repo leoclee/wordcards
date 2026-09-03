@@ -181,13 +181,6 @@ function moveCarousel(direction) {
     if (centerCard.classList.contains('flipped')) {
         centerCard.classList.remove('flipped');
 
-        // Advance internal counter immediately so the text swaps cleanly after the flip finishes
-        if (direction === 'next') {
-            currentIndex = (currentIndex + 1) % currentWords.length;
-        } else {
-            currentIndex = (currentIndex - 1 + currentWords.length) % currentWords.length;
-        }
-
         setTimeout(() => { moveCarousel(direction); }, 250);
         return;
     }
