@@ -18,17 +18,46 @@
         </div>
     </header>
 
-    <div class="card-container">
-        <div class="flashcard" id="card" onclick="flipCard()">
-            <!-- Front Face: Shows Word Instantly -->
-            <div class="card-face card-front">
-                <div class="word-display" id="frontWord">Loading...</div>
-                <button class="audio-btn" id="speakWordBtn" onclick="speakWord(event)">🔊</button>
-            </div>
-            <!-- Back Face: Shows Sentence Hint -->
-            <div class="card-face card-back">
-                <div class="hint-display" id="backHint">Sentence context goes here.</div>
-                <button class="audio-btn" id="speakSentenceBtn" onclick="speakSentence(event)">🔊</button>
+    <div class="carousel-container">
+        <div class="carousel-window">
+            <div class="card-track" id="cardTrack">
+                <!-- Left Card Frame Slot -->
+                <div class="flashcard pos-left" id="leftCard">
+                    <div class="card-face card-front">
+                        <div class="word-display" id="leftWord"></div>
+                        <button class="audio-btn">🔊</button>
+                    </div>
+                </div>
+
+                <!-- Center Main Workspace Card Frame Slot -->
+                <div class="flashcard pos-center" id="card" onclick="flipCard()">
+                    <!-- Front Face: Shows Word Instantly -->
+                    <div class="card-face card-front">
+                        <div class="word-display" id="frontWord">Loading...</div>
+                        <button class="audio-btn" id="speakWordBtn" onclick="speakWord(event)">🔊</button>
+                    </div>
+                    <!-- Back Face: Shows Sentence Hint -->
+                    <div class="card-face card-back">
+                        <div class="hint-display" id="backHint">Sentence context goes here.</div>
+                        <button class="audio-btn" id="speakSentenceBtn" onclick="speakSentence(event)">🔊</button>
+                    </div>
+                </div>
+
+                <!-- Right Card Frame Slot -->
+                <div class="flashcard pos-right" id="rightCard">
+                    <div class="card-face card-front">
+                        <div class="word-display" id="rightWord"></div>
+                        <button class="audio-btn">🔊</button>
+                    </div>
+                </div>
+
+                <!-- temporary card used to maintain the carousel illusion -->
+                <div class="flashcard pos-farright" id="tempCard">
+                    <div class="card-face card-front">
+                        <div class="word-display" id="tempWord"></div>
+                        <button class="audio-btn">🔊</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

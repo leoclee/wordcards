@@ -84,25 +84,103 @@ select:focus {
     transition: background-color 0.3s, border-color 0.2s;
 }
 
-.card-container {
+.carousel-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    overflow-x: hidden; /* Stops far-flanking cards from growing the canvas width */
+    padding: 10px 0;
+}
+
+.carousel-window {
     width: 100%;
     max-width: 600px;
     height: 350px;
-    perspective: 1000px;
     margin-bottom: 30px;
+    position: relative;
+    overflow: visible; /* Allows side cards to show on wider desktops */
+}
+
+.card-track {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
 }
 
 .flashcard {
     width: 100%;
     height: 100%;
-    position: relative;
+    position: absolute;
     transform-style: preserve-3d;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    box-sizing: border-box;
+    /* Handles position, scaling, and fading simultaneously */
+    transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1),
+    opacity 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Active Position States for the Conveyor Belt */
+.flashcard.pos-center {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+    z-index: 10;
     cursor: pointer;
 }
 
-.flashcard.flipped {
-    transform: rotateY(180deg);
+.flashcard.pos-left {
+    transform: translateX(-100%) scale(0.85);
+    opacity: 0.25;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.flashcard.pos-right {
+    transform: translateX(100%) scale(0.85);
+    opacity: 0.25;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.flashcard.pos-farleft {
+    transform: translateX(-200%) scale(0.85);
+    opacity: 0.25;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.flashcard.pos-farright {
+    transform: translateX(200%) scale(0.85);
+    opacity: 0.25;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.flashcard.pos-center.flipped {
+    transform: translateX(0) scale(1) rotateY(180deg);
+}
+
+/* Linear-gradient overlay system for screen edge fading */
+@media (min-width: 768px) {
+    body::before, body::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: calc((100vw - 620px) / 2);
+        z-index: 5;
+        pointer-events: none;
+    }
+    body::before {
+        left: 0;
+        background: linear-gradient(to right, var(--bg-color) 40%, transparent);
+    }
+    body::after {
+        right: 0;
+        background: linear-gradient(to left, var(--bg-color) 40%, transparent);
+    }
 }
 
 .card-face {

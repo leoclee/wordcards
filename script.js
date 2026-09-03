@@ -2,7 +2,7 @@ let allLists = {};
 let currentListName = "";
 let currentWords = [];
 let currentIndex = 0;
-let isSpellingMode = false; // System state tracking flag
+let isSpellingMode = false;
 
 try {
     if (typeof FLASHCARD_DATA === 'undefined') {
@@ -59,12 +59,27 @@ function loadList(listName) {
         currentWords = [...allLists[listName]];
     }
     currentIndex = 0;
-    
+
     // Force immediate sync without animation delay when explicitly changing lists
     const card = document.getElementById('card');
     card.classList.remove('flipped');
     window.speechSynthesis.cancel();
     renderTextValues();
+}
+
+function resetCardPositions() {
+    const leftCard = document.getElementById('leftCard');
+    const centerCard = document.getElementById('card');
+    const rightCard = document.getElementById('rightCard');
+
+    // Strip out stray navigation animation helpers
+    leftCard.style.transition = 'none';
+    centerCard.style.transition = 'none';
+    rightCard.style.transition = 'none';
+
+    leftCard.className = 'flashcard pos-left';
+    centerCard.className = 'flashcard pos-center';
+    rightCard.className = 'flashcard pos-right';
 }
 
 // Handles switching modes dynamically
@@ -90,26 +105,43 @@ function renderTextValues() {
         return;
     }
 
+    const prevIndex = (currentIndex - 1 + currentWords.length) % currentWords.length;
+    const nextIndex = (currentIndex + 1) % currentWords.length;
+    const tempIndex = (currentIndex + (document.getElementById("tempCard").classList.contains("pos-left") ? -2 : 2) + currentWords.length) % currentWords.length;
+
     const currentCardData = currentWords[currentIndex];
+    const prevCardData = currentWords[prevIndex];
+    const nextCardData = currentWords[nextIndex];
+    const tempCardData = currentWords[tempIndex];
+
     const frontDisplay = document.getElementById('frontWord');
     const backDisplay = document.getElementById('backHint');
+    const leftWord = document.getElementById('leftWord');
+    const rightWord = document.getElementById('rightWord');
+    const tempWord = document.getElementById('tempWord');
 
-    // 1. Process Front Side Card text values
     frontDisplay.innerText = currentCardData.word;
+    leftWord.innerText = prevCardData.word;
+    rightWord.innerText = nextCardData.word;
+    tempWord.innerText = tempCardData.word;
     if (isSpellingMode) {
         frontDisplay.classList.add('redacted-word');
+        leftWord.classList.add('redacted-word');
+        rightWord.classList.add('redacted-word');
+        tempWord.classList.add('redacted-word');
     } else {
         frontDisplay.classList.remove('redacted-word');
+        leftWord.classList.remove('redacted-word');
+        rightWord.classList.remove('redacted-word');
+        tempWord.classList.remove('redacted-word');
     }
 
-    // 2. Process Back Side Card Text values (Sentence parsing logic)
     const targetWord = currentCardData.word;
     const originalSentence = currentCardData.sentence || "No sample sentence provided.";
 
     // Regex looks for the whole target word safely (case-insensitive)
     const regex = new RegExp(`\\b(${targetWord})\\b`, 'gi');
     if (isSpellingMode && currentCardData.sentence) {
-        // Inject an inline HTML element containing your requested redaction styles
         backDisplay.innerHTML = originalSentence.replace(regex, '<span class="redacted">$1</span>');
     } else {
         backDisplay.innerHTML = originalSentence.replace(regex, '<span class="word-in-sentence">$1</span>');
@@ -143,28 +175,106 @@ function flipCard() {
 }
 
 function nextCard() {
-    if (currentWords.length === 0) return;
-    currentIndex = (currentIndex + 1) % currentWords.length;
-    updateCardDisplay();
+    moveCarousel('next');
 }
 
 function prevCard() {
+    moveCarousel('prev');
+}
+
+// Unified Core Carousel Navigation Engine
+function moveCarousel(direction) {
     if (currentWords.length === 0) return;
-    currentIndex = (currentIndex - 1 + currentWords.length) % currentWords.length;
-    updateCardDisplay();
+
+    const leftCard = document.getElementById('leftCard');
+    const centerCard = document.getElementById('card');
+    const rightCard = document.getElementById('rightCard');
+    const tempCard = document.getElementById('tempCard');
+    window.speechSynthesis.cancel();
+
+    // 1. Unified Flip Detection: If card is flipped, flip it back first, then re-fire
+    if (centerCard.classList.contains('flipped')) {
+        centerCard.classList.remove('flipped');
+
+        // Advance internal counter immediately so the text swaps cleanly after the flip finishes
+        if (direction === 'next') {
+            currentIndex = (currentIndex + 1) % currentWords.length;
+        } else {
+            currentIndex = (currentIndex - 1 + currentWords.length) % currentWords.length;
+        }
+
+        setTimeout(() => { moveCarousel(direction); }, 250);
+        return;
+    }
+
+    // 2. Adjust internal list pointer only if we didn't pre-advance it during a flip action
+    if (!centerCard.classList.contains('flipped')) {
+        if (direction === 'next') {
+            currentIndex = (currentIndex + 1) % currentWords.length;
+        } else {
+            currentIndex = (currentIndex - 1 + currentWords.length) % currentWords.length;
+        }
+    }
+
+    // 3. Temporarily kill transitions to stage text layout positioning instantly
+    leftCard.style.transition = 'none';
+    centerCard.style.transition = 'none';
+    rightCard.style.transition = 'none';
+    tempCard.style.transition = 'none';
+
+    // 4. Set up the structural offsets based on direction bounds
+    if (direction === 'next') {
+        leftCard.className = 'flashcard pos-center';
+        centerCard.className = 'flashcard pos-right';
+        rightCard.className = 'flashcard pos-farright';
+        tempCard.className = 'flashcard pos-left';
+    } else {
+        leftCard.className = 'flashcard pos-farleft';
+        centerCard.className = 'flashcard pos-left';
+        rightCard.className = 'flashcard pos-center';
+        tempCard.className = 'flashcard pos-right';
+    }
+
+    // 5. Populate text states while layout nodes are hidden/offset
+    renderTextValues();
+
+    // 6. Force immediate browser layout engine reflow
+    void centerCard.offsetWidth;
+
+    // 7. Restore active CSS transition properties
+    leftCard.style.transition = '';
+    centerCard.style.transition = '';
+    rightCard.style.transition = '';
+    tempCard.style.transition = '';
+
+    // 8. Slide cards smoothly back to their final structural default centers
+    leftCard.className = 'flashcard pos-left';
+    centerCard.className = 'flashcard pos-center';
+    rightCard.className = 'flashcard pos-right';
+    if (direction === 'next') {
+        tempCard.className = 'flashcard pos-farleft';
+    } else {
+        tempCard.className = 'flashcard pos-farright';
+    }
 }
 
 function shuffleCurrentList() {
     if (currentWords.length <= 1) return;
-    
+
     for (let i = currentWords.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [currentWords[i], currentWords[j]] = [currentWords[j], currentWords[i]];
     }
     currentIndex = 0;
-    
-    // Animate smoothly back to front on shuffle execution
-    updateCardDisplay();
+
+    const card = document.getElementById('card');
+    if (card.classList.contains('flipped')) {
+        card.classList.remove('flipped');
+        setTimeout(() => { resetCardPositions(); renderTextValues(); }, 250);
+    } else {
+        resetCardPositions();
+        renderTextValues();
+    }
 }
 
 function toggleTheme() {
@@ -188,11 +298,13 @@ document.addEventListener('keydown', function(event) {
     }
     
     if (event.code === 'Space') {
-        event.preventDefault(); 
+        event.preventDefault();
         flipCard();
     } else if (event.code === 'ArrowRight') {
+        event.preventDefault();
         nextCard();
     } else if (event.code === 'ArrowLeft') {
+        event.preventDefault();
         prevCard();
     }
 });
