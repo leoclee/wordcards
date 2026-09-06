@@ -4,24 +4,23 @@ let currentWords = [];
 let currentIndex = 0;
 let isSpellingMode = false;
 
-try {
-    if (typeof FLASHCARD_DATA === 'undefined') {
-        throw new Error("FLASHCARD_DATA variable not found");
+// can't just expect FLASHCARD_DATA to be available because Facebook's internal browser is trash
+function pollForData() {
+    if (typeof FLASHCARD_DATA !== 'undefined' && FLASHCARD_DATA !== null) {
+        allLists = FLASHCARD_DATA;
+        populateDropdown();
+
+        const lists = Object.keys(allLists);
+        if (lists.length > 0) {
+            loadList(lists[0]);
+            document.getElementById('listSelector').value = lists[0];
+        }
+    } else {
+        setTimeout(pollForData, 30);
     }
-    allLists = FLASHCARD_DATA;
-    populateDropdown();
-    
-    const lists = Object.keys(allLists);
-    if (lists.length > 0) {
-        loadList(lists[0]);
-        document.getElementById('listSelector').value = lists[0];
-    }
-} catch (error) {
-    document.getElementById('frontWord').innerText = "Error";
-    document.getElementById('frontWord').style.fontSize = "2rem";
-    alert("Error loading lists. Please ensure words.js is in the same directory and correctly formatted.");
-    console.error(error);
 }
+
+pollForData();
 
 if (localStorage.getItem('theme') === 'dark' || 
     (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
