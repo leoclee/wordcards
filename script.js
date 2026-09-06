@@ -5,8 +5,8 @@ let currentIndex = 0;
 let isSpellingMode = false;
 
 try {
-    if (!window.FLASHCARD_DATA) {
-        throw new Error("FLASHCARD_DATA variable not found on window context");
+    if (typeof FLASHCARD_DATA === 'undefined') {
+        throw new Error("FLASHCARD_DATA variable not found");
     }
     allLists = FLASHCARD_DATA;
     populateDropdown();

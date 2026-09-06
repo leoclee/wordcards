@@ -1,4 +1,4 @@
-window.FLASHCARD_DATA = {
+const FLASHCARD_DATA = {
   "1st Grade High Frequency Words List 1": [
     { "word": "the", "sentence": "Look at the big dog." },
     { "word": "of", "sentence": "She has a cup of milk." },
